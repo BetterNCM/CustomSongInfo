@@ -3,18 +3,14 @@ let lastModified = -1;
 
 window.onProcessLyrics = async (lyrics, id) => {
     currentId = id;
-    if(currentId.split)currentId=currentId.split("_")[0]
+    if (currentId.split) currentId = currentId.split("_")[0]
     lyrics ??= { lrc: "", krc: "", code: 200 }
 
     console.log("[CustomSongInfo] Lyrics: ", id, lyrics);
 
     let localLyric = await betterncm.fs.readFileText(`./CustomSongInfo/${currentId}/lyrics.lrc`);
     if (localLyric && localLyric !== lyrics?.lrc?.lyrics) {
-        // if (!lyrics.lrc) {
-            lyrics.lrc = {version:12,lyric:localLyric};
-            // lyrics.lrc.__proto__.version = 12;
-            // lyrics.lrc.__proto__.lyric = localLyric;
-        // }
+        lyrics.lrc = { version: 12, lyric: localLyric };
     }
 
 
